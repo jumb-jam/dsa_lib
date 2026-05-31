@@ -192,22 +192,30 @@ public:
     }
 
     T& front(){
-        assert(size_ > 0);
+        if(size_ == 0){
+            throw std::out_of_range("vector is empty");
+        }
         return data_[0];
     }
 
     const T& front() const {
-        assert(size_ > 0);
+        if(size_ == 0){
+            throw std::out_of_range("vector is empty");
+        }
         return data_[0];
     }
 
     T& back(){
-        assert(size_ > 0);
+        if(size_ == 0){
+            throw std::out_of_range("vector is empty");
+        }
         return data_[size_ - 1];
     }
 
     const T& back() const {
-        assert(size_ > 0);
+        if(size_ == 0){
+            throw std::out_of_range("vector is empty");
+        }
         return data_[size_ - 1];
     }
 
