@@ -63,7 +63,7 @@ public:
         return *this;
     }
 
-    Vector(Vector&& v) : data_(v.data_), size_(v.size_), capacity_(v.capacity_) {//move constructor
+    Vector(Vector&& v) noexcept : data_(v.data_), size_(v.size_), capacity_(v.capacity_) {//move constructor
 
         v.data_=nullptr;
         v.size_=0;
@@ -71,7 +71,7 @@ public:
         
     }
 
-    Vector& operator=(Vector&& v) noexcept {
+    Vector& operator=(Vector&& v) noexcept { //move assignment
         if(this == &v){
             return *this;
         }
@@ -165,7 +165,7 @@ public:
 
     void erase(std::size_t index){
         if(index>=size_){
-            throw std::out_of_range("index out of range");
+            throw std::out_of_range("Index out of range");
         }
 
         for (std::size_t i = index; i < size_ - 1; i++) {
@@ -175,8 +175,74 @@ public:
     }
 
     T& at(std::size_t index){
-        if(index)
+        if(index >= size_){
+            throw std::out_of_range("Index out of range");
+        }
+
+        return data_[index];
     }
+
+    const T& at(std::size_t index) const {
+        if(index >= size_){
+            throw std::out_of_range("Index out of range");
+        }
+
+        return data_[index];
+    }
+
+    T& front(){
+        assert(size_ > 0);
+        return data_[0];
+    }
+
+    const T& front() const {
+        assert(size_ > 0);
+        return data_[0];
+    }
+
+    T& back(){
+        assert(size_ > 0);
+        return data_[size_ - 1];
+    }
+
+    const T& back() const {
+        assert(size_ > 0);
+        return data_[size_ - 1];
+    }
+
+    void reserve(std::size_t newCap){
+        if(capacity_ <= newCap){
+            resize_capacity(newCap);
+        }
+    }
+
+    void shrink_to_fit(){
+        if(size_ < capacity_){
+            resize_capacity(size_);
+        }
+    }
+
+    T* begin(){
+        return data_;
+    }
+
+    T* end(){
+        return data_ + size_;
+    }
+
+    const T* begin() const {
+        return data_;
+    }
+
+    const T* end() const{
+        return data_ + size_;
+    }
+
+    void clear(){
+        size_ = 0;
+    }
+
+    
 
     
 
