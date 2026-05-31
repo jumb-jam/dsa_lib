@@ -35,8 +35,8 @@ public:
 
     ~Vector() { //destructor
         delete[] data_;
-        size_= 0;
-        capacity_= 0;
+        size_ = 0;
+        capacity_ = 0;
     }
 
     Vector(const Vector& v) : data_(new T[v.capacity_] {}), size_(v.size_), capacity_(v.capacity_) { //copy constructor
@@ -90,8 +90,6 @@ public:
         return *this;
 
     }
-
-
 
     std::size_t size() const{
         return size_;
@@ -250,10 +248,6 @@ public:
     void clear(){
         size_ = 0;
     }
-
-    
-
-    
 
 };
 

@@ -13,35 +13,35 @@ template <typename T>
 
 class Stack{
 private:
-    Vector<T> data;
+    Vector<T> stack;
 
 public:
     
     void push(const T& value){
-        data.push_back(value);
+        stack.push_back(value);
     }
 
     void pop(){
-        if(data.isempty()){
+        if(stack.isempty()){
             throw std::out_of_range("stack is empty");
         }
-        data.pop_back();
+        stack.pop_back();
     }
 
     T& top(){
-        return data.back();
+        return stack.back();
     }
 
     const T& top() const {
-        return data.back();
+        return stack.back();
     }
 
     bool isempty() const {
-        return data.isempty();
+        return stack.isempty();
     }
 
     std::size_t size() const {
-        return data.size();
+        return stack.size_();
     }
 
 };
