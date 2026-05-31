@@ -4,6 +4,7 @@
 #include <cassert>
 #include <stdexcept>
 #include <iostream>
+#include <utility>
 
 
 namespace dsa{
@@ -20,7 +21,7 @@ private:
         T* newData = new T[newCap];
 
         for (std::size_t i = 0; i < size_; ++i) {
-            newData[i] = data_[i];
+            newData[i] = std::move(data_[i]);
         }
 
         delete[] data_;
@@ -211,7 +212,7 @@ public:
     }
 
     void reserve(std::size_t newCap){
-        if(capacity_ <= newCap){
+        if(capacity_ < newCap){
             resize_capacity(newCap);
         }
     }
