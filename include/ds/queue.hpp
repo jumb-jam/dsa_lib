@@ -17,7 +17,33 @@ private:
     Deque<T> queue;
 
 public:
-    
+    void enqueue(const T& value){
+        queue.push_back(value);
+    }
+
+    void dequeue(){
+        queue.pop_front();
+    }
+
+    T& front(){
+        return queue.front();
+    }
+
+    const T& front() const {
+        return queue.front();
+    }
+
+    const T& back() const {
+        return queue.back();
+    }
+
+    std::size_t size() const {
+        return queue.size();
+    }
+
+    bool isempty() const {
+        return queue.isempty();
+    }
 };
 
 }
