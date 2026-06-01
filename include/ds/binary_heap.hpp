@@ -60,6 +60,17 @@ private:
     }
 
 public:
+    Heap() = default;
+
+    Heap(const Vector<T>& values) : data_(values) {
+        if(data_.isempty()) {
+            return;
+        }
+
+        for(std::size_t i = data_.size() / 2; i > 0;--i){
+            heapify_down(i - 1);
+        }
+    }   
 
     void push(const T& value){
         data_.push_back(value);
