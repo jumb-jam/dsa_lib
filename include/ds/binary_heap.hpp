@@ -18,7 +18,7 @@ private:
     Vector<T> data_;
     Compare comp_;
 
-    void heapify_up(std::size_t index){
+    void heapify_up(size_t index){
         while(index > 0){
 
             std::size_t parent= (index - 1)/2;
